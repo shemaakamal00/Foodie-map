@@ -4,7 +4,7 @@ A web application for discovering food locations for special diet .
 
 ## Prerequisites
 
-- Node.js (v18 or higher recommended)
+- Node.js (v22 or higher recommended)
 
 ## Getting Started
 
