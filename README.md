@@ -1,6 +1,6 @@
 # Foodie Map
 
-A web application for discovering food locations for special diet .
+Hitta halal-certifierade och kostanpassade restauranger i Stockholm.
 
 ## Prerequisites
 
@@ -21,48 +21,127 @@ cd Foodie-map
 npm install
 ```
 
-### 3. Install Playwright browser
+### 3. Install Playwright browser (for E2E tests)
 
 ```bash
 npx playwright install chromium
 ```
 
+### 4. Run the development server
+
+```bash
+npx vite
+```
+
+Open `http://localhost:5173/startsida.html` in your browser.
+
+> **IMPORTANT:** Do NOT use VS Code Live Server! It won't work with TypeScript files. Always use `npx vite` to run the project.
+
 ## Project Structure
 
 ```
-project/
+├── startsida.html          # Home page
+├── restaurangsida.html     # Restaurant page
+├── kartsida.html           # Map page
+├── favoritsida.html        # Favorites page
+├── tipssida.html           # Tips page
+│
 ├── src/
-│   └── css/
-│       └── style.css
+│   ├── components/
+│   │   ├── nav.ts          # Shared navigation (auto-injected)
+│   │   └── footer.ts       # Shared footer (auto-injected)
+│   ├── css/
+│   │   ├── style.css       # Global styles + CSS variables
+│   │   ├── nav.css         # Navigation styles
+│   │   └── footer.css      # Footer styles
+│   ├── pages/              # Page-specific TypeScript (create your own)
+│   ├── main.ts             # Entry point - imports nav/footer
+│   ├── supabase.ts         # Supabase API wrapper
+│   ├── database.ts         # Supabase credentials
+│   └── vite-env.d.ts       # TypeScript declarations
+│
 ├── tests/
 │   ├── unit/
 │   ├── integration/
 │   └── e2e/
-├── index.html
-├── eslint.config.mjs
-├── vitest.config.js
-├── playwright.config.js
-└── package.json
+```
+
+## For Colleagues
+
+### Adding nav & footer to your page
+
+Every HTML page just needs this at the bottom of `<body>`:
+
+```html
+<script type="module" src="/src/main.ts"></script>
+```
+
+The navigation and footer will render automatically.
+
+### Creating page-specific logic
+
+Create your own TypeScript file in `src/pages/`, for example:
+
+```
+src/pages/favoritsida.ts
+```
+
+Then import it in your HTML:
+
+```html
+<script type="module" src="/src/pages/favoritsida.ts"></script>
+```
+
+### Using Supabase
+
+Import the wrapper functions:
+
+```typescript
+import { fromTable, fromTableFiltered } from "./supabase.ts";
+
+// Fetch all from a table
+const restaurants = await fromTable("restaurant", "id,name,address");
+
+// Fetch with filter
+const halal = await fromTableFiltered("restaurant", { name: "ilike.*kebab*" });
 ```
 
 ## Available Scripts
 
-| Command            | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| `npm test`         | Run all tests (unit + integration + e2e) with coverage |
-| `npm run test:e2e` | Run end-to-end tests only                              |
-| `npm run lint`     | Lint source files                                      |
-| `npm run preview`  | Preview built application                              |
-
-## Testing
-
-- **Unit tests**: Located in `tests/unit/` - test individual functions
-- **Integration tests**: Located in `tests/integration/` - test component interactions
-- **E2E tests**: Located in `tests/e2e/` - test full user flows with Playwright
+| Command            | Description                 |
+| ------------------ | --------------------------- |
+| `npx vite`         | Start development server    |
+| `npm test`         | Run all tests with coverage |
+| `npm run test:e2e` | Run E2E tests only          |
+| `npm run lint`     | Lint source files           |
 
 ## Tech Stack
 
+- **TypeScript** - Type-safe JavaScript
 - **Vite** - Build tool and dev server
 - **Vitest** - Unit and integration testing
 - **Playwright** - End-to-end testing
 - **ESLint** - Code linting
+- **Leaflet** - Map library (via CDN)
+- **Supabase** - Database (REST API)
+
+## CSS Variables
+
+Use these in your styles:
+
+```css
+var(--color-primary)      /* #3E5A5B - nav/footer */
+var(--color-background)   /* #f5f5f5 - page background */
+var(--color-surface)      /* #ffffff - cards */
+var(--color-text)         /* #333333 - text */
+var(--border-radius)      /* 8px */
+```
+
+Diet tags:
+
+```css
+var(--color-tag-halal)     /* green */
+var(--color-tag-vegan)     /* light green */
+var(--color-tag-glutenfree) /* orange */
+var(--color-tag-kosher)    /* purple */
+```
