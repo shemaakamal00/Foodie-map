@@ -1,0 +1,2 @@
+export const SUPABASE_URL = "https://jwypdrafsvvaoucjsaol.supabase.co"
+export const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3eXBkcmFmc3Z2YW91Y2pzYW9sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NTA1MDksImV4cCI6MjA5MDUyNjUwOX0.dbJPsv3LLh3aoDTBzKsN1Ps2sDNQCaUvRbStw45RBgM";
