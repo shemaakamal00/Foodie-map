@@ -10,8 +10,8 @@
   <main>
     <h1>Restaurangtips</h1>
     <p>Föreslå special diet hos en restaurang i Stockholm.</p>
-
-    <form id="tips-form">
+    <div class="content-grid-2-columns">
+      <form id="tips-form">
       <div>
         <label for="name">Ditt fullständiga namn:</label>
         <input type="text" id="name" name="name" required>
@@ -25,7 +25,23 @@
         <textarea id="description" name="description" rows="4" required></textarea>
       </div>
       <button type="submit">Skicka tips</button>
-    </form>
+      </form>
+
+      <div class="contact-info">
+        <h3>Kontaktuppgifter</h3>
+        <p>Har du frågor om tipsen? Kontakta oss på:</p>
+        <p>Telefon: 08-123 456 789</p>
+        <p>Email: info@foodiemap.se</p>
+        <h4>Följ oss på våra sociala medier</h4>
+        
+        <div class="social-media-banner">
+          <a href="https://facebook.com/foodiemap" target="_blank" rel="noopener noreferrer"><img src="/src/images/facebook-icon.png" alt="Facebook"></a>
+          <a href="https://instagram.com/foodiemap" target="_blank" rel="noopener noreferrer"><img src="/src/images/instagram-icon.png" alt="Instagram"></a>
+          <a href="https://linkedin.com/company/foodiemap" target="_blank" rel="noopener noreferrer"><img src="/src/images/linkedin-icon.png" alt="LinkedIn"></a>
+        </div>
+
+      </div>
+    </div>
 
   </main>
   <script type="module" src="/src/main.ts"></script>
