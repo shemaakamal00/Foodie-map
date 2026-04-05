@@ -1,18 +1,181 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foodie Map - Restaurang</title>
-</head>
-<body>
-  <main>
-    <h1>Restaurang</h1>
-    <p>Restauranginformation visas här.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foodie Map - Restauranger</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/restaurant.css" />
+  </head>
 
-    <!-- Content here -->
-     
-  </main>
-  <script type="module" src="/src/main.ts"></script>
-</body>
+  <body>
+    <main class="restaurant-page">
+      <section class="restaurant-hero">
+        <h1>Hitta restauranger i Stockholm</h1>
+        <p>
+          Upptäck de bästa halal, veganska, kosher och glutenfria restaurangerna
+          i Stockholm med Foodie Map. Oavsett om du letar efter en mysig café,
+          en trendig bistro eller en exklusiv gourmetrestaurang, har vi något
+          för alla smaker.
+        </p>
+      </section>
+
+      <section class="search-section">
+        <label for="search-input" class="sr-only"
+          >Sök efter restauranger:</label
+        >
+        <div class="search-box">
+          <input
+            type="text"
+            id="search-input"
+            name="search-input"
+            placeholder="Sök namn, område eller kategori..."
+          />
+          <button id="search-button" type="button" class="btn btn-primary">
+            Sök
+          </button>
+        </div>
+      </section>
+
+      <section class="filter-section">
+        <h2>Filtrera efter kategori</h2>
+        <div class="filter-chips">
+          <button type="button" class="filter-chip active">Alla</button>
+          <button type="button" class="filter-chip">Halal</button>
+          <button type="button" class="filter-chip">Vegansk</button>
+          <button type="button" class="filter-chip">Kosher</button>
+          <button type="button" class="filter-chip">Glutenfri</button>
+        </div>
+      </section>
+
+      <section class="restaurant-list-section">
+        <div class="section-heading">
+          <h2>Restauranger i Stockholm</h2>
+          <p id="results-count">Visar 3 restauranger</p>
+        </div>
+
+        <div class="restaurant-list" id="restaurant-list">
+          <article class="restaurant-card">
+            <img
+              src="images/beirut-bistro.avif"
+              alt="Bild på Restaurang"
+              class="restaurant-image"
+            />
+
+            <div class="restaurant-card-content">
+              <div class="restaurant-card-header">
+                <h3>Beirut Bistro</h3>
+                <button
+                  type="button"
+                  class="favorite-button"
+                  aria-label="Lägg till som favorit"
+                >
+                  ♡
+                </button>
+              </div>
+              <p class="restaurant-location">Kungsholmen, Stockholm</p>
+
+              <div class="restaurant-tags">
+                <span class="tag tag-halal">Halal</span>
+                <span class="tag tag-neutral">Libanesisk</span>
+              </div>
+
+              <p class="restaurant-description">
+                Beirut Bistro är en libanesisk restaurang på Kungsholmen med
+                panoramautsikt över Ulvsundasjön. Här serveras genuin meze,
+                grillrätter och smakrika libanesiska rätter i en varm och mysig
+                miljö.
+              </p>
+
+              <div class="restaurant-actions">
+                <a href="https://beirutbistro.se/" target="_blank" class="btn btn-primary">Läs mer</a>
+                <a href="https://www.google.com/search?q=Beirut+Bistro+Stockholm+reviews" target="_blank" class="btn btn-primary">Recensioner</a>
+                <a href="https://www.google.com/maps?q=Beirut+Bistro+Stockholm" target="_blank" class="btn btn-primary">Hitta hit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="restaurant-card">
+            <img
+              src="images/hermans.jpg"
+              alt="Bild på Restaurang"
+              class="restaurant-image"
+            />
+            <div class="restaurant-card-content">
+              <div class="restaurant-card-header">
+                <h3>Hermans</h3>
+                <button
+                  type="button"
+                  class="favorite-button"
+                  aria-label="Lägg till som favorit"
+                >
+                  ♡
+                </button>
+              </div>
+              <p class="restaurant-location">Slussen, Stockholm</p>
+
+              <div class="restaurant-tags">
+                <span class="tag tag-vegan">Vegansk</span>
+                <span class="tag tag-neutral">Buffé</span>
+              </div>
+
+              <p class="restaurant-description">
+                Hermans är en populär vegansk bufférestaurang med en av
+                Stockholms bästa utsikter. Här kan du njuta av en generös
+                växtbaserad buffé i en lugn och mysig miljö nära Slussen.
+              </p>
+
+              <div class="restaurant-actions">
+                <a href="https://hermans.se/" target="_blank" class="btn btn-primary">Läs mer</a>
+                <a href="https://www.google.com/search?q=Hermans+Stockholm+reviews" target="_blank" class="btn btn-primary">Recensioner</a>
+                <a href="https://www.google.com/maps?q=Hermans+Stockholm" target="_blank" class="btn btn-primary">Hitta hit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="restaurant-card">
+            <img
+              src="images/happy-atelier.jpg"
+              alt="Bild på Restaurang"
+              class="restaurant-image"
+            />
+            <div class="restaurant-card-content">
+              <div class="restaurant-card-header">
+                <h3>Happy Atelier</h3>
+                <button
+                  type="button"
+                  class="favorite-button"
+                  aria-label="Lägg till som favorit"
+                >
+                  ♡
+                </button>
+              </div>
+              <p class="restaurant-location">Södermalm, Stockholm</p>
+              <div class="restaurant-tags">
+                <span class="tag tag-glutenfree">Glutenfri</span>
+                <span class="tag tag-neutral">Café</span>
+              </div>
+
+              <p class="restaurant-description">
+                Happy Atelier är ett glutenfritt café och bageri i Stockholm. De
+                är helt fria från gluten, havre och laktos, och erbjuder
+                bakverk, bröd och fika med fokus på både smak och kvalitet.
+              </p>
+              <div class="restaurant-actions">
+                <a href="https://happyatelier.se/" target="_blank" class="btn btn-primary">Läs mer</a>
+                <a href="https://www.google.com/search?q=Happy+Atelier+Stockholm+reviews" target="_blank" class="btn btn-primary">Recensioner</a>
+                <a href="https://www.google.com/maps?q=Happy+Atelier+Stockholm" target="_blank" class="btn btn-primary">Hitta hit</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p id="status-message" class="status-message" hidden>
+          Inga restauranger matchade din sökning.
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
