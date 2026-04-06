@@ -11,7 +11,7 @@
   }
 }
 
-form {
+#form-block {
   max-width: 480px;
   margin-top: 32px;
   padding: 24px;
@@ -76,4 +76,16 @@ form button:hover {
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+
+.form-response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: #e6ffed;
+  border: 1px solid #34d399;
+  border-radius: 16px;
 }
