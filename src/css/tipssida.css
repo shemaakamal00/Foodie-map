@@ -85,7 +85,15 @@ form button:hover {
   align-items: center;
   gap: 16px;
   padding: 24px;
-  background: #e6ffed;
-  border: 1px solid #34d399;
   border-radius: 16px;
+}
+
+.form-response.success {
+  background: #e6ffed;
+  border-color: #34d399;
+}
+
+.form-response.error {
+  background: #ffc5c5;
+  border-color: #d33434;
 }
