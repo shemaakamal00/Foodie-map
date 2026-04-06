@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="src/css/favoritsida.css">
+   <link rel="stylesheet" href="src/css/style.css">
   <title>Foodie Map - Favoriter</title>
 </head>
 <body>
@@ -16,22 +17,32 @@
        <div class="restaurant-list">
 
     <div class="card">
-     
-        <img src="https://via.placeholder.com/100" alt="restaurang">
+        <img
+              src="images/beirut-bistro.avif"
+              alt="Bild på Restaurang"
+              class="restaurant-image"
+            />
+    
   
         <div class="card-text">
         
             <div class="card-header">
           <h2>Pizza Maestro</h2>
             <span class="rating">4.5</span>
+         
+            <div class="remove-button">
+              <a href="https://www.google.com/maps?q=Happy+Atelier+Stockholm" target="_blank" class="btn btn-primary">Ta Bort</a>
             </div>
+          
+          </div>
+            
           <p>Restaurang, Stockholm</p>
          <hr>
          
          <div class = "diet-list">
-            <span class="diet">Vegan</span>
-            <span class="diet">Halal</span>
-            <span class="diet">Gluten-Free</span>
+            <span class="tag tag-vegan">Vegan</span>
+            <span class="tag tag-halal">Halal</span>
+            <span class="tag tag-glutenfree">Gluten-Free</span>
          </div> 
           
           <p>Nice food and cozy atmosphere. Full options for vegans, halal and so much more. Visit us for a warm welcome and good food.</p>
@@ -39,20 +50,74 @@
       </div>
 
       <div class="card">
-        <div class = "card-picture">
-        <img src="https://via.placeholder.com/100" alt="restaurang">
+        <div class = "card-header">
+        <img
+              src="images/beirut-bistro.avif"
+              alt="Bild på Restaurang"
+              class="restaurant-image"
+            />
         </div>
-        <div class="card-text">
-          <h2>Restaurant 2</h2>
-          <p>Great pizza and fast service.</p>
-        </div>
+       
       </div>
       </div>
 </div>
 <div class = "box right">
-    <h1>Box2</h1>
-</div>
+  <div class ="righ-card">
+    <div class = "map-container">
+       <img
+              src="images/beirut-bistro.avif"
+              alt="Bild på Restaurang"
+              class="right-map-image"
+            />
+      
+        </div>
+    
+    <div class = "right-text-container">
+      <div class = "image-header-content">
+     
+        <div class = "right-restaurant-image">
+        <img
+              src="images/beirut-bistro.avif"
+              alt="Bild på Restaurang"
+              class="restaurant-image"
+            />
+           </div>
+             
+        <div class = "right-text-content">
+        <h2>Restaurang Bistro</h2>
 
+        <p class = "restaurant-type">Restaurang</p>
+         <p class = "location">Stockholm</p>
+         <hr>
+            <div class = "diet-list">
+            <span class="tag tag-vegan">Vegan</span>
+            <span class="tag tag-halal">Halal</span>
+            <span class="tag tag-glutenfree">Gluten-Free</span>
+         </div> 
+            </div>
+             
+          </div>
+        <div class = "right-description-content">
+            <p class="description-text">
+                Happy Atelier är ett glutenfritt café och bageri i Stockholm. De
+                är helt fria från gluten, havre och laktos, och erbjuder
+                bakverk, bröd och fika med fokus på både smak och kvalitet.
+              </p>
+
+        </div>
+
+      </div>
+      
+    </div>
+  
+  
+   
+       </div>
+    </div>
+   
+</div>
+ 
+</div>
 
 </div>
 </main>
