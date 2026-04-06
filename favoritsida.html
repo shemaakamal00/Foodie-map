@@ -3,16 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/css/favoritsida.css">
   <title>Foodie Map - Favoriter</title>
 </head>
 <body>
-  <main>
-    <h1>Mina Favoriter</h1>
-    <p>Dina sparade restauranger visas här.</p>
+   <main>
+<div class = "container">
+<div class = "box left">
+  <div class ="favoriter-text">
+    <h2>Mina Favoriter</h2>
+    </div>
+       <div class="restaurant-list">
 
-    <!-- Content here -->
+    <div class="card">
      
-  </main>
+        <img src="https://via.placeholder.com/100" alt="restaurang">
+  
+        <div class="card-text">
+        
+            <div class="card-header">
+          <h2>Pizza Maestro</h2>
+            <span class="rating">4.5</span>
+            </div>
+          <p>Restaurang, Stockholm</p>
+         <hr>
+         
+         <div class = "diet-list">
+            <span class="diet">Vegan</span>
+            <span class="diet">Halal</span>
+            <span class="diet">Gluten-Free</span>
+         </div> 
+          
+          <p>Nice food and cozy atmosphere. Full options for vegans, halal and so much more. Visit us for a warm welcome and good food.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class = "card-picture">
+        <img src="https://via.placeholder.com/100" alt="restaurang">
+        </div>
+        <div class="card-text">
+          <h2>Restaurant 2</h2>
+          <p>Great pizza and fast service.</p>
+        </div>
+      </div>
+      </div>
+</div>
+<div class = "box right">
+    <h1>Box2</h1>
+</div>
+
+
+</div>
+</main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
