@@ -1,6 +1,7 @@
 import "./css/style.css";
 import "./css/nav.css";
 import "./css/footer.css";
+import "./pages/restaurants.ts";
 import { renderNav, setActiveNavLink } from "./components/nav.ts";
 import { renderFooter } from "./components/footer.ts";
 
