@@ -7,7 +7,6 @@ const statusMessage = document.getElementById("status-message");
 const searchInput = document.getElementById(
   "search-input"
 ) as HTMLInputElement | null;
-const searchButton = document.getElementById("search-button");
 const filterButtons = document.querySelectorAll(".filter-chip");
 
 let allRestaurants: RestaurantWithDiets[] = [];
@@ -196,12 +195,6 @@ function setupFilterButtons(): void {
 function setupSearch(): void {
   if (searchInput) {
     searchInput.addEventListener("input", () => {
-      applyFiltersAndSearch();
-    });
-  }
-
-  if (searchButton) {
-    searchButton.addEventListener("click", () => {
       applyFiltersAndSearch();
     });
   }
