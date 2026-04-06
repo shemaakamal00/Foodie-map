@@ -98,3 +98,8 @@ a {
 .btn-primary:hover {
   background-color: var(--color-primary-dark);
 }
+
+.tag-unknown {
+  background-color: var(--color-text-light);
+  color: white;
+}
