@@ -52,7 +52,7 @@ a {
   background: var(--color-surface);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  padding: 16px;
+  
 }
 
 .tag {
