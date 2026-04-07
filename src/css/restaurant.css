@@ -108,6 +108,12 @@
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .restaurant-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
   }
   
   .restaurant-image {
@@ -183,10 +189,6 @@
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
-  }
-  
-  .tag-neutral {
-    background-color: var(--color-text-light);
   }
   
   @media (max-width: 768px) {
