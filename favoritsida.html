@@ -3,16 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/css/favorites.css">
+   <link rel="stylesheet" href="src/css/style.css">
   <title>Foodie Map - Favoriter</title>
 </head>
 <body>
-  <main>
-    <h1>Mina Favoriter</h1>
-    <p>Dina sparade restauranger visas här.</p>
-
-    <!-- Content here -->
-     
-  </main>
+   <main>
+   
+<div class = "container">
+<div class = "box left">
+  <div class ="favoriter-text">
+    <h2>Mina Favoriter</h2>
+    </div>
+       <div class="restaurant-list" id = "favorites-list">
+         <!-- Favoriter laddas här -->
+       </div>
+</div>
+<div class = "box right">
+  <div class ="righ-card">
+ <div class = map-container id = "map-container">
+  <!-- Höger låda kartvisning efter tryck -->
+    </div>
+   <div class = "right-text-container">
+       <!-- Ytterligare info visas här efter tryck -->
+          </div>
+      </div>
+      </div>
+ </div>
+</main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

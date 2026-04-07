@@ -4,6 +4,7 @@ export type Restaurant = {
     image_url: string;
     website_url: string;
     description: string;
+    
   };
 
   export type Diet = {
