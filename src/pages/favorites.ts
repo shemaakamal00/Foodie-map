@@ -105,12 +105,29 @@ async function loadFavorites() {
   renderFavorites(filtered);
 }
 
+
+
 function renderRightBox(id: number) {
   const restaurant = currentRestaurants.find((r) => r.id === id);
   if (!restaurant) return;
 
   const imageContainer = document.getElementById("map-container");
   const container = document.querySelector(".right-text-container");
+
+  const mapEmbed = `
+  <div class="map-container">
+    <div class = "right-map-image">
+    <iframe
+      width="100%"
+      height="100%"
+      style="border:0"
+      loading="lazy"
+      allowfullscreen
+      src="https://www.google.com/maps?q=${restaurant.latitude},${restaurant.longitude}&output=embed">
+    </iframe>
+  </div>
+    </div>
+`;
 
   if (!container || !imageContainer ) return;
 
@@ -122,11 +139,7 @@ function renderRightBox(id: number) {
 
      imageContainer.innerHTML = `
      
-       <img
-              src="src/images/map.jpeg"
-              alt="karta"
-              class="right-map-image"
-            />
+        ${mapEmbed}
     
 `;
 
