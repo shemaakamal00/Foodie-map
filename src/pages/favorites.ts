@@ -109,9 +109,10 @@ function renderRightBox(id: number) {
   const restaurant = currentRestaurants.find((r) => r.id === id);
   if (!restaurant) return;
 
+  const imageContainer = document.getElementById("map-container");
   const container = document.querySelector(".right-text-container");
 
-  if (!container) return;
+  if (!container || !imageContainer ) return;
 
   const dietTags = restaurant.diets?.length
     ? restaurant.diets
@@ -119,7 +120,19 @@ function renderRightBox(id: number) {
         .join("")
     : `<span class="tag tag-unknown">Okänd kategori</span>`;
 
+     imageContainer.innerHTML = `
+     
+       <img
+              src="src/images/map.jpeg"
+              alt="karta"
+              class="right-map-image"
+            />
+    
+`;
+
   container.innerHTML = `
+   
+  
     <div class="image-header-content">
       <div class="right-restaurant-image">
         <img src="${restaurant.image_url}" />
