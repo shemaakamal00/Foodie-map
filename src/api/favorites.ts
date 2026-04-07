@@ -12,6 +12,28 @@ export async function fetchFavorites(): Promise<Favorite[]> {
   return favorites;
 }
 
+export async function addFavorite(
+  restaurantId: number,
+  deviceId: string
+) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/favorites`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify({
+      restaurant_id: restaurantId,
+      device_id: deviceId,
+    }),
+  });
+
+  if (!res.ok) {
+    console.error("Insert error:", await res.text());
+  }
+}
 export async function removeFavorite(
   restaurantId: number,
   deviceId: string
@@ -31,4 +53,6 @@ export async function removeFavorite(
   if (!res.ok) {
     console.error("Delete error:", await res.text());
   }
+
+  
 }
