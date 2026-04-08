@@ -3,6 +3,7 @@ import type { RestaurantWithDiets } from "../types/restaurant";
 import { fetchFavorites, removeFavorite } from "../api/favorites";
 
 const list = document.getElementById("favorites-list");
+const container = document.querySelector(".container");
 let currentRestaurants: RestaurantWithDiets[] = [];
 
 function getDeviceId(): string {
@@ -60,7 +61,7 @@ function renderFavorites(restaurants: RestaurantWithDiets[]) {
               </div>
             </div>
 
-            <p>Restaurang, Stockholm</p>
+            <p>${r.address}</p>
             <hr>
 
             <div class="diet-list">
@@ -80,9 +81,13 @@ list?.addEventListener("click", (e) => {
   const card = target.closest(".card") as HTMLElement;
   if (!card) return;
    const id = card.dataset.id;
-   console.log("Clicked restaurant ID:", id);
+   console.log("Clicked restaurant id:", id);
   
   renderRightBox(Number(id));
+  container?.classList.add("show-detail");
+  openRestaurant();
+
+  
 });
 async function loadFavorites() {
   const restaurants = await fetchRestaurants();
@@ -105,12 +110,29 @@ async function loadFavorites() {
   renderFavorites(filtered);
 }
 
+
+
 function renderRightBox(id: number) {
   const restaurant = currentRestaurants.find((r) => r.id === id);
   if (!restaurant) return;
 
   const imageContainer = document.getElementById("map-container");
   const container = document.querySelector(".right-text-container");
+
+  const mapEmbed = `
+  <div class="map-container">
+    <div class = "right-map-image">
+    <iframe
+      width="100%"
+      height="100%"
+      style="border:0"
+      loading="lazy"
+      allowfullscreen
+      src="https://www.google.com/maps?q=${restaurant.latitude},${restaurant.longitude}&output=embed">
+    </iframe>
+  </div>
+    </div>
+`;
 
   if (!container || !imageContainer ) return;
 
@@ -122,11 +144,7 @@ function renderRightBox(id: number) {
 
      imageContainer.innerHTML = `
      
-       <img
-              src="src/images/map.jpeg"
-              alt="karta"
-              class="right-map-image"
-            />
+        ${mapEmbed}
     
 `;
 
@@ -145,8 +163,9 @@ function renderRightBox(id: number) {
 
       <div class="right-text-content">
         <h2>${restaurant.name}</h2>
+       
         
-        <p class="location">Stockholm</p>
+     <p class="location">${restaurant.address}</p>
       <a href="${restaurant.website_url}" target="_blank" class = "visit-website-btn">
       Besök Hemsida
       </a>
@@ -168,19 +187,12 @@ function renderRightBox(id: number) {
 }
 list?.addEventListener("click", async (e) => {
   const target = e.target as HTMLElement;
-
-
-  const removeBtn = target.closest(".remove-btn") as HTMLElement;
-
-  if (removeBtn) {
+   const removeBtn = target.closest(".remove-btn") as HTMLElement;
+   if (removeBtn) {
     const id = Number(removeBtn.dataset.id);
     const deviceId = getDeviceId();
-
     await removeFavorite(id, deviceId);
-
-  
-    loadFavorites();
-
+   loadFavorites();
     return;
   }
 
@@ -191,5 +203,15 @@ list?.addEventListener("click", async (e) => {
   const id = Number(card.dataset.id);
   renderRightBox(id);
 });
+
+
+
+function openRestaurant() {
+  container?.classList.add("show-detail");
+}
+document.getElementById("back-button")?.addEventListener("click", () => {
+  document.querySelector(".container")?.classList.remove("show-detail");
+});
+
 loadFavorites();
 
