@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <title>Karta – Stockholm Restauranger</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #search-bar {
+      padding: 12px 16px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      gap: 8px;
+    }
+
+    #search-bar input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    #search-bar button {
+      padding: 8px 16px;
+      background: #2d6a4f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    #map {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="search-bar">
+    <input id="search-input" type="text" placeholder="Sök restaurang i Stockholm..." />
+    <button id="search-btn">Sök</button>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="./src/pages/map.ts"></script>
+</body>
+</html>
