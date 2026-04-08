@@ -45,7 +45,21 @@ h2 {
         height: 180px !important;     
         border-radius: 12px 12px 0 0; 
     }
-
+  .box-left{
+    display: block;
+  }
+  .box-right{
+    display: none;
+  }
+.container.show-detail .box-left {
+    display: none;
+  }
+  .container.show-detail .box-right {
+    display: block;
+  }
+  .container.show-detail #back-button {
+    display: block;
+  }
  
 }
 .diet-list {
@@ -56,6 +70,10 @@ h2 {
     
   
 }
+
+  #back-button {
+   display: none
+  }
 .diet {
   
     
@@ -168,6 +186,7 @@ h2 {
     height: 350px;
     border-radius: 12px;
 margin: 0.5rem;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 
 
    
