@@ -1,36 +1,35 @@
+import { insertIntoTable } from "../supabase.ts";
+
 const tipsForm = document.getElementById('tips-form') as HTMLFormElement;
 const formBlock = document.getElementById('form-block') as HTMLDivElement;
 
-async function submitTip(data: Record<string, string>) {
+type Suggestion = {
+  name: string;
+  description: string;
+  email: string;
+  status?: string;
+};
+
+async function submitTip(data: Suggestion) {
   try {
-    const response = await fetch('/api/tips', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.status}`);
-    }
-
-    return await response.json();
+    return await insertIntoTable('suggestion', data);
   } catch (error) {
-    console.error('Fetch error:', error);
+    console.error('Error, could not submit tip:', error);
     throw error;
   }
 }
 
+//Submit event listener
 tipsForm.addEventListener('submit', async (event: SubmitEvent) => {
   event.preventDefault();
 
   const formData = new FormData(tipsForm);
-  const payload: Record<string, string> = {};
-
-  formData.forEach((value, key) => {
-    payload[key] = value.toString();
-  });
+  const payload: Suggestion = {
+  name: formData.get("name")?.toString() || "",
+  description: formData.get("description")?.toString() || "",
+  email: formData.get("email")?.toString() || "",
+  status: "pending",
+};
 
   try {
     await submitTip(payload);
@@ -52,8 +51,6 @@ tipsForm.addEventListener('submit', async (event: SubmitEvent) => {
   <p>Det gick inte att skicka tipset. Försök igen senare.</p>
 </div>`;
   }
-
-  console.log('Form submitted with data:', payload);
 });
 
 
