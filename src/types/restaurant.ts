@@ -4,6 +4,8 @@ export type Restaurant = {
     image_url: string;
     website_url: string;
     address: string;
+    longitude: string;
+    latitude: string;
     description: string;
     
   };
