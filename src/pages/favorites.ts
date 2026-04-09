@@ -21,7 +21,7 @@ console.log("Device ID:", getDeviceId());
 
 
 
-function getDietClass(diet: string): string {
+export function getDietClass(diet: string): string {
   const normalizedDiet = diet.trim().toLowerCase();
 
   if (normalizedDiet.includes("halal")) return "tag-halal";
