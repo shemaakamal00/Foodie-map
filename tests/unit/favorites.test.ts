@@ -1,13 +1,16 @@
-import { test, describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { getDietClass } from "../../src/pages/favorites";
 
+describe("getDietClass", () => {
+  it("returns 'tag-halal' for Halal", () => {
+    expect(getDietClass("Halal")).toBe("tag-halal");
+  });
 
+  it("returns 'tag-vegan' for Vegan", () => {
+    expect(getDietClass("Vegan")).toBe("tag-vegan");
+  });
 
-
-
-
-describe("basic test", () => {
-  it("works", () => {
-    expect(1 + 1).toBe(2);
+  it("returns 'tag-unknown' for unknown diet", () => {
+    expect(getDietClass("Pizza")).toBe("tag-unknown");
   });
 });

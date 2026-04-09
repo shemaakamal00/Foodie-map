@@ -1,7 +1,7 @@
 import { fetchRestaurants } from "../api/restaurants";
 import type { RestaurantWithDiets } from "../types/restaurant";
 import { fetchFavorites, removeFavorite } from "../api/favorites";
-
+export { renderFavorites };
 const list = document.getElementById("favorites-list");
 const container = document.querySelector(".container");
 let currentRestaurants: RestaurantWithDiets[] = [];
