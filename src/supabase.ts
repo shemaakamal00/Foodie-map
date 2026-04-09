@@ -41,3 +41,36 @@ export async function fromTableFiltered<T>(
   if (!res.ok) throw new Error(`Supabase error: ${res.statusText}`);
   return res.json();
 }
+
+// For inserting suggestions
+export async function insertIntoTable<T>(
+  table: string,
+  data: Record<string, unknown>
+): Promise<T> {
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/${table}`,
+    {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
+
+  if (!res.ok) {
+  throw new Error(`Supabase error: ${res.statusText}`);
+}
+
+const text = await res.text();
+
+if (!text) {
+  return <T>{}; 
+}
+
+return JSON.parse(text);
+
+}
+
