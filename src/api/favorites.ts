@@ -1,6 +1,7 @@
 import { fromTable} from "../supabase";
 import { SUPABASE_URL, SUPABASE_KEY } from "../database";
 
+
 type Favorite = {
   id: number;
   restaurant_id: number;

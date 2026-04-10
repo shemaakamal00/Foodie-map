@@ -1,7 +1,7 @@
 import { fetchRestaurants } from "../api/restaurants";
 import type { RestaurantWithDiets } from "../types/restaurant";
 import { fetchFavorites, removeFavorite } from "../api/favorites";
-
+export { renderFavorites };
 const list = document.getElementById("favorites-list");
 const container = document.querySelector(".container");
 let currentRestaurants: RestaurantWithDiets[] = [];
@@ -21,7 +21,7 @@ console.log("Device ID:", getDeviceId());
 
 
 
-function getDietClass(diet: string): string {
+export function getDietClass(diet: string): string {
   const normalizedDiet = diet.trim().toLowerCase();
 
   if (normalizedDiet.includes("halal")) return "tag-halal";
