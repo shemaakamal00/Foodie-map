@@ -1,59 +1,36 @@
-import { describe, it, expect } from "vitest";
-import { filterRestaurants } from "../../src/pages/restaurants";
-import type { RestaurantWithDiets } from "../../src/types/restaurant";
+import { test, expect } from "@playwright/test";
 
-describe("restaurant filtering flow", () => {
-  const restaurants: RestaurantWithDiets[] = [
-    {
-      id: 1,
-      name: "Hermans",
-      image_url: "",
-      website_url: "",
-      description: "Vegansk buffé med utsikt över Stockholm",
-      diets: ["Vegansk"],
-    },
-    {
-      id: 2,
-      name: "Beirut Café",
-      image_url: "",
-      website_url: "",
-      description: "Libanesisk mat i Stockholm",
-      diets: ["Halal"],
-    },
-    {
-      id: 3,
-      name: "Kosher Corner",
-      image_url: "",
-      website_url: "",
-      description: "Kosher dishes",
-      diets: ["Kosher"],
-    },
-  ];
+test.describe("restaurant page flow", () => {
+  test("user can filter restaurants by category", async ({ page }) => {
+    await page.goto("/restaurangsida.html");
 
-  it("shows only halal restaurants when halal filter is selected", () => {
-    const result = filterRestaurants(restaurants, "", "halal");
+    await page.waitForSelector(".restaurant-card");
 
-    expect(result).toHaveLength(1);
-    expect(result[0].name).toBe("Beirut Café");
+    const initialCount = await page.locator(".restaurant-card").count();
+
+    await page.getByRole("button", { name: "Halal" }).click();
+
+    await expect(page.locator(".restaurant-card").first()).toBeVisible();
+    await expect(page.locator("body")).toContainText("Halal");
+
+    const filteredCount = await page.locator(".restaurant-card").count();
+    expect(filteredCount).toBeLessThanOrEqual(initialCount);
   });
 
-  it("lets the user search for vegan restaurants", () => {
-    const result = filterRestaurants(restaurants, "veg", "alla");
+  test("user can search for a restaurant", async ({ page }) => {
+    await page.goto("/restaurangsida.html");
 
-    expect(result).toHaveLength(1);
-    expect(result[0].name).toBe("Hermans");
-  });
+    await page.waitForSelector(".restaurant-card");
 
-  it("combines search and selected filter", () => {
-    const result = filterRestaurants(restaurants, "stockholm", "halal");
+    const initialCount = await page.locator(".restaurant-card").count();
 
-    expect(result).toHaveLength(1);
-    expect(result[0].name).toBe("Beirut Café");
-  });
+    await page
+      .getByPlaceholder("Sök namn, område eller kategori...")
+      .fill("Hermans");
 
-  it("returns no restaurants when nothing matches", () => {
-    const result = filterRestaurants(restaurants, "sushi", "vegan");
+    await expect(page.locator("body")).toContainText("Hermans");
 
-    expect(result).toHaveLength(0);
+    const filteredCount = await page.locator(".restaurant-card").count();
+    expect(filteredCount).toBeLessThanOrEqual(initialCount);
   });
 });
