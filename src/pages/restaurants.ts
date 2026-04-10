@@ -2,29 +2,35 @@ import { fetchRestaurants } from "../api/restaurants";
 import type { RestaurantWithDiets } from "../types/restaurant";
 import { addFavorite } from "../api/favorites";
 
-const restaurantList = document.getElementById("restaurant-list");
-const resultsCount = document.getElementById("results-count");
-const statusMessage = document.getElementById("status-message");
-const searchInput = document.getElementById(
-  "search-input"
-) as HTMLInputElement | null;
-const filterButtons = document.querySelectorAll(".filter-chip");
+function getSearchInput(): HTMLInputElement | null {
+  return document.getElementById("search-input") as HTMLInputElement | null;
+}
+
+function getFilterButtons(): NodeListOf<Element> {
+  return document.querySelectorAll(".filter-chip");
+}
+
+function getDomElements() {
+  return {
+    restaurantList: document.getElementById("restaurant-list"),
+    resultsCount: document.getElementById("results-count"),
+    statusMessage: document.getElementById("status-message"),
+  };
+}
 
 let allRestaurants: RestaurantWithDiets[] = [];
 let activeFilter = "alla";
 
-
-//Save DeviceID for saving into favorites
 function getDeviceId(): string {
-  let deviceId = localStorage.getItem("device_id");
-   if (!deviceId) {
-    deviceId = crypto.randomUUID();
-    localStorage.setItem("device_id", deviceId);
+  let id = localStorage.getItem("device_id");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("device_id", id);
   }
- return deviceId;
+  return id;
 }
 
-function normalizeDiet(diet: string): string {
+export function normalizeDiet(diet: string): string {
   const normalizedDiet = diet.trim().toLowerCase();
 
   if (normalizedDiet.includes("halal")) return "halal";
@@ -36,7 +42,7 @@ function normalizeDiet(diet: string): string {
   return "unknown";
 }
 
-function normalizeFilter(filter: string): string {
+export function normalizeFilter(filter: string): string {
   const normalizedFilter = filter.trim().toLowerCase();
 
   if (normalizedFilter === "alla") return "alla";
@@ -49,7 +55,7 @@ function normalizeFilter(filter: string): string {
   return normalizedFilter;
 }
 
-function getDietClass(diet: string): string {
+export function getDietClass(diet: string): string {
   const normalizedDiet = normalizeDiet(diet);
 
   if (normalizedDiet === "halal") return "tag-halal";
@@ -62,22 +68,26 @@ function getDietClass(diet: string): string {
 }
 
 function updateResultsCount(count: number): void {
+  const { resultsCount } = getDomElements();
   if (!resultsCount) return;
   resultsCount.textContent = `Visar ${count} restauranger`;
 }
 
 function showStatusMessage(message: string): void {
+  const { statusMessage } = getDomElements();
   if (!statusMessage) return;
   statusMessage.textContent = message;
   statusMessage.hidden = false;
 }
 
 function hideStatusMessage(): void {
+  const { statusMessage } = getDomElements();
   if (!statusMessage) return;
   statusMessage.hidden = true;
 }
 
-function renderRestaurants(restaurants: RestaurantWithDiets[]): void {
+export function renderRestaurants(restaurants: RestaurantWithDiets[]): void {
+  const { restaurantList } = getDomElements();
   if (!restaurantList) return;
 
   if (restaurants.length === 0) {
@@ -170,14 +180,20 @@ function renderRestaurants(restaurants: RestaurantWithDiets[]): void {
     .join("");
 }
 
-function getFilteredRestaurants(): RestaurantWithDiets[] {
-  const searchValue = searchInput?.value.trim().toLowerCase() ?? "";
+export function filterRestaurants(
+  restaurants: RestaurantWithDiets[],
+  searchValue: string,
+  activeFilter: string
+): RestaurantWithDiets[] {
+  const normalizedSearch = searchValue.trim().toLowerCase();
 
-  return allRestaurants.filter((restaurant) => {
+  return restaurants.filter((restaurant) => {
     const matchesSearch =
-      restaurant.name.toLowerCase().includes(searchValue) ||
-      restaurant.description.toLowerCase().includes(searchValue) ||
-      restaurant.diets.some((diet) => diet.toLowerCase().includes(searchValue));
+      restaurant.name.toLowerCase().includes(normalizedSearch) ||
+      restaurant.description.toLowerCase().includes(normalizedSearch) ||
+      restaurant.diets.some((diet) =>
+        diet.toLowerCase().includes(normalizedSearch)
+      );
 
     const matchesFilter =
       activeFilter === "alla" ||
@@ -187,12 +203,19 @@ function getFilteredRestaurants(): RestaurantWithDiets[] {
   });
 }
 
+function getFilteredRestaurants(): RestaurantWithDiets[] {
+  const searchValue = getSearchInput()?.value ?? "";
+  return filterRestaurants(allRestaurants, searchValue, activeFilter);
+}
+
 function applyFiltersAndSearch(): void {
   const filteredRestaurants = getFilteredRestaurants();
   renderRestaurants(filteredRestaurants);
 }
 
 function setupFilterButtons(): void {
+  const filterButtons = getFilterButtons();
+
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const buttonText = button.textContent?.trim() ?? "Alla";
@@ -207,6 +230,8 @@ function setupFilterButtons(): void {
 }
 
 function setupSearch(): void {
+  const searchInput = getSearchInput();
+
   if (searchInput) {
     searchInput.addEventListener("input", () => {
       applyFiltersAndSearch();
@@ -215,6 +240,7 @@ function setupSearch(): void {
 }
 
 async function loadRestaurants(): Promise<void> {
+  const { restaurantList } = getDomElements();
   if (!restaurantList) return;
 
   try {
@@ -228,19 +254,24 @@ async function loadRestaurants(): Promise<void> {
   }
 }
 
-restaurantList?.addEventListener("click", async (e) => {
-  const target = e.target as HTMLElement;
-  const button = target.closest(".favorite-button") as HTMLElement;
-  if (!button) return;
-  const id = button.getAttribute("data-id");
-  if (!id) return;
-  const deviceId = getDeviceId();
-  await addFavorite(Number(id), deviceId);
-  console.log("Restaurant added to favorites with id: ", id);
- 
-  button.textContent = "❤️";
-});
+function init(): void {
+  setupFilterButtons();
+  setupSearch();
+  loadRestaurants();
 
-setupFilterButtons();
-setupSearch();
-loadRestaurants();
+  const { restaurantList } = getDomElements();
+  restaurantList?.addEventListener("click", async (e) => {
+    const target = e.target as HTMLElement;
+    const button = target.closest(".favorite-button") as HTMLElement;
+    if (!button) return;
+    const id = button.getAttribute("data-id");
+    if (!id) return;
+    const deviceId = getDeviceId();
+    await addFavorite(Number(id), deviceId);
+    button.textContent = "❤️";
+  });
+}
+
+if (typeof document !== "undefined") {
+  document.addEventListener("DOMContentLoaded", init);
+}
