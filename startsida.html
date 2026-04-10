@@ -1,19 +1,85 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foodie Map - Hem</title>
-</head>
-<body>
-  <main>
-    <h1>Välkommen till Foodie Map</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foodie Map - Hem</title>
 
-    <!-- Content here -->
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/nav.css" />
+    <link rel="stylesheet" href="/src/css/footer.css" />
+    <link rel="stylesheet" href="/src/css/startsida.css" />
+  </head>
 
-    
-     
-  </main>
-  <script type="module" src="/src/main.ts"></script>
-</body>
+  <body>
+    <main>
+      <section class="home-hero-block">
+        <h1 id="main title">Foodie Map</h1>
+        <h1 class="home-hero-title">Hitta restauranger som passar din specialkost</h1>
+        <p class="home-hero-description">
+          Foodie Map hjälper dig att hitta restauranger med halal, veganska,
+          kosher och glutenfria alternativ när du är i en ny stad eller vill
+          hitta tryggare matval nära dig.
+        </p>
+
+        <div class="home-hero-actions">
+          <a href="/kartsida.html" class="btn btn-primary">Öppna kartan</a>
+          <a href="/restaurangsida.html" class="btn">Se restauranger</a>
+        </div>
+      </section>
+
+      <section class="home-pitch-block">
+        <article class="card home-pitch-card">
+          <h2>Problemet</h2>
+          <p>
+            Många med specialkost måste googla, läsa recensioner eller fråga
+            andra för att veta vilka restauranger som faktiskt passar deras behov.
+          </p>
+        </article>
+
+        <article class="card home-pitch-card">
+          <h2>Lösningen</h2>
+          <p>
+            Foodie Map samlar restauranger i en karta och lista där användaren
+            kan filtrera efter sina kostkrav på ett enkelt sätt.
+          </p>
+        </article>
+      </section>
+
+      <section class="home-benefits-block">
+        <h2>Varför använda Foodie Map?</h2>
+
+        <div class="home-benefits-list">
+          <article class="card home-benefit-card">
+            <h3>Snabbare sökning</h3>
+            <p>Slipp leta manuellt bland osäker information.</p>
+          </article>
+
+          <article class="card home-benefit-card">
+            <h3>Tryggare val</h3>
+            <p>Hitta alternativ som passar dina kostbehov direkt.</p>
+          </article>
+
+          <article class="card home-benefit-card">
+            <h3>Bra vid resor</h3>
+            <p>Perfekt när du är i en stad där du inte känner till utbudet.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-sample-block">
+        <div class="home-sample-header">
+          <h2>Utforska efter kost</h2>
+          <a href="/restaurangsida.html">Visa alla</a>
+        </div>
+
+        <div id="home-sample-list-unique" class="home-sample-list">
+          <p>Laddar kosttyper...</p>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/pages/startsida.ts"></script>
+  </body>
 </html>
