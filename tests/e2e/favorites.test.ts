@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("user can open restaurant and go back", async ({ page }) => {
+test("user can open restaurant and go back through box right and left", async ({ page }) => {
   await page.goto("http://localhost:5173/favoritsida.html");
   await expect(page.locator("body")).toBeVisible();
   await page.waitForTimeout(2000);
