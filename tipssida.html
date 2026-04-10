@@ -4,14 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Foodie Map - Tips</title>
+  <link rel="stylesheet" href="/src/css/tipssida.css">
 </head>
 <body>
   <main>
     <h1>Restaurangtips</h1>
-    <p>Föreslå special diet hos en restaurang i Stockholm.</p>
+    <div class="content">
+      <p>Vi strävar efter att göra det enkelt för alla att hitta restauranger som erbjuder kosher, halal, veganskt eller annan certifierad specialkost i Stockholm.</p>
+      <br>
+      <p>Har du en favoritrestaurang som erbjuder kosher, halal, veganskt eller annan certifierad specialkost - men som inte finns med hos oss?</p>
+      <br>
+      <p>Eller har du upptäckt att någon information behöver uppdateras?</p>
+      <br>
+      <p>Fyll i formuläret nedan så tar vi det vidare. Tillsammans gör vi det enklare för fler att hitta rätt.</p>
 
-    <!-- Content here -->
+    <div class="content-grid-2-columns">
+      <div id="form-block">
+       <form id="tips-form">
+        <div>
+         <label for="name">Ditt fullständiga namn:</label>
+         <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+         <label for="email">Din email:</label>
+         <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+         <label for="description">Beskrivning</label>
+         <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+         <button type="submit">Skicka tips</button>
+       </form>
+      </div>
+
+      <div class="contact-info">
+        <h3>Kontaktuppgifter</h3>
+        <p>Har du frågor om tipsen? Kontakta oss på:</p>
+        <p>Telefon: 08-123 456 789</p>
+        <p>Email: info@foodiemap.se</p>
+        <h4>Följ oss på våra sociala medier</h4>
+
+        <div class="social-media-banner">
+          <a href="https://facebook.com/foodiemap" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" 
+     viewBox="0 0 24 24" 
+     width="32" 
+     height="32" 
+     fill="#000">
+  <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99h-2.7V12h2.7V9.8c0-2.67 1.6-4.14 4.05-4.14 1.17 0 2.4.21 2.4.21v2.64h-1.35c-1.33 0-1.74.83-1.74 1.68V12h2.96l-.47 2.89h-2.49v6.99A10 10 0 0 0 22 12z"/>
+</svg></a>
+          <a href="https://instagram.com/foodiemap" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" 
+     viewBox="0 0 24 24" 
+     width="32" 
+     height="32" 
+     fill="#000">
+  <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.5 5.5 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zm4.75-3.75a1.25 1.25 0 1 0 1.25 1.25 1.25 1.25 0 0 0-1.25-1.25z"/>
+</svg></a>
+          <a href="https://linkedin.com/company/foodiemap" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" 
+     viewBox="0 0 24 24" 
+     width="32" 
+     height="32" 
+     fill="#000">
+  <path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.06-1.86-3.06-1.86 0-2.14 1.45-2.14 2.96v5.7H9.35V9h3.41v1.56h.05c.47-.9 1.62-1.86 3.33-1.86 3.56 0 4.21 2.34 4.21 5.38v6.37zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/>
+</svg></a>
+        </div>
+
+      </div>
+    </div>
+    </div>
+
   </main>
   <script type="module" src="/src/main.ts"></script>
+  <script type="module" src="/src/pages/tipssida.ts"></script>
 </body>
 </html>

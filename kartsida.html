@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karta - Stockholm Restauranger</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/src/css/map.css" />
+</head>
+<body>
+  <main class="map-page">
+    <section class="map-toolbar">
+      <div class="search-box">
+        <input id="search-input" type="text" placeholder="Sök restauranger i Stockholm" />
+        <button id="search-btn" class="btn btn-primary">Sök</button>
+      </div>
+    </section>
+
+    <div id="map"></div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

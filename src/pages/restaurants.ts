@@ -1,5 +1,6 @@
 import { fetchRestaurants } from "../api/restaurants";
 import type { RestaurantWithDiets } from "../types/restaurant";
+import { addFavorite } from "../api/favorites";
 
 const restaurantList = document.getElementById("restaurant-list");
 const resultsCount = document.getElementById("results-count");
@@ -100,9 +101,11 @@ export function renderRestaurants(restaurants: RestaurantWithDiets[]): void {
           <div class="restaurant-card-content">
             <div class="restaurant-card-header">
               <h3>${restaurant.name}</h3>
+             
               <button
                 type="button"
                 class="favorite-button"
+                data-id="${restaurant.id}"
                 aria-label="Lägg till som favorit"
               >
                 ♡
@@ -224,6 +227,19 @@ async function loadRestaurants(): Promise<void> {
     showStatusMessage("Något gick fel när restaurangerna skulle laddas.");
   }
 }
+
+restaurantList?.addEventListener("click", async (e) => {
+  const target = e.target as HTMLElement;
+  const button = target.closest(".favorite-button") as HTMLElement;
+  if (!button) return;
+  const id = button.getAttribute("data-id");
+  if (!id) return;
+  const deviceId = getDeviceId();
+  await addFavorite(Number(id), deviceId);
+  console.log("Restaurant added to favorites with id: ", id);
+ 
+  button.textContent = "❤️";
+});
 
 setupFilterButtons();
 setupSearch();

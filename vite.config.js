@@ -6,6 +6,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         startsida: resolve(__dirname, "startsida.html"),
+        kartsida: resolve(__dirname, "kartsida.html"),
         restaurangsida: resolve(__dirname, "restaurangsida.html"),
         favoritsida: resolve(__dirname, "favoritsida.html"),
         tipssida: resolve(__dirname, "tipssida.html"),

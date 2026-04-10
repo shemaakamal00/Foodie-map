@@ -3,7 +3,11 @@ export type Restaurant = {
     name: string;
     image_url: string;
     website_url: string;
+    address: string;
+    longitude: string;
+    latitude: string;
     description: string;
+    
   };
 
   export type Diet = {
