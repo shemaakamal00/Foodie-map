@@ -12,7 +12,7 @@ const filterButtons = document.querySelectorAll(".filter-chip");
 let allRestaurants: RestaurantWithDiets[] = [];
 let activeFilter = "alla";
 
-function normalizeDiet(diet: string): string {
+export function normalizeDiet(diet: string): string {
   const normalizedDiet = diet.trim().toLowerCase();
 
   if (normalizedDiet.includes("halal")) return "halal";
@@ -24,7 +24,7 @@ function normalizeDiet(diet: string): string {
   return "unknown";
 }
 
-function normalizeFilter(filter: string): string {
+export function normalizeFilter(filter: string): string {
   const normalizedFilter = filter.trim().toLowerCase();
 
   if (normalizedFilter === "alla") return "alla";
@@ -37,7 +37,7 @@ function normalizeFilter(filter: string): string {
   return normalizedFilter;
 }
 
-function getDietClass(diet: string): string {
+export function getDietClass(diet: string): string {
   const normalizedDiet = normalizeDiet(diet);
 
   if (normalizedDiet === "halal") return "tag-halal";
@@ -65,7 +65,7 @@ function hideStatusMessage(): void {
   statusMessage.hidden = true;
 }
 
-function renderRestaurants(restaurants: RestaurantWithDiets[]): void {
+export function renderRestaurants(restaurants: RestaurantWithDiets[]): void {
   if (!restaurantList) return;
 
   if (restaurants.length === 0) {
@@ -156,14 +156,20 @@ function renderRestaurants(restaurants: RestaurantWithDiets[]): void {
     .join("");
 }
 
-function getFilteredRestaurants(): RestaurantWithDiets[] {
-  const searchValue = searchInput?.value.trim().toLowerCase() ?? "";
+export function filterRestaurants(
+  restaurants: RestaurantWithDiets[],
+  searchValue: string,
+  activeFilter: string
+): RestaurantWithDiets[] {
+  const normalizedSearch = searchValue.trim().toLowerCase();
 
-  return allRestaurants.filter((restaurant) => {
+  return restaurants.filter((restaurant) => {
     const matchesSearch =
-      restaurant.name.toLowerCase().includes(searchValue) ||
-      restaurant.description.toLowerCase().includes(searchValue) ||
-      restaurant.diets.some((diet) => diet.toLowerCase().includes(searchValue));
+      restaurant.name.toLowerCase().includes(normalizedSearch) ||
+      restaurant.description.toLowerCase().includes(normalizedSearch) ||
+      restaurant.diets.some((diet) =>
+        diet.toLowerCase().includes(normalizedSearch)
+      );
 
     const matchesFilter =
       activeFilter === "alla" ||
@@ -171,6 +177,11 @@ function getFilteredRestaurants(): RestaurantWithDiets[] {
 
     return matchesSearch && matchesFilter;
   });
+}
+
+function getFilteredRestaurants(): RestaurantWithDiets[] {
+  const searchValue = searchInput?.value ?? "";
+  return filterRestaurants(allRestaurants, searchValue, activeFilter);
 }
 
 function applyFiltersAndSearch(): void {
